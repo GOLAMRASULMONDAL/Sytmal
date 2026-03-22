@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYTMAL – Save Your Time, Money & Labor</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d7a3a;
+    --green-light: #3fa04e;
+    --green-pale: #e8f5ea;
+    --gold: #d4a017;
+    --gold-light: #f0c040;
+    --dark: #111a13;
+    --mid: #2a3b2d;
+    --text: #1a2b1d;
+    --muted: #607060;
+    --white: #f7faf7;
+    --card-bg: #ffffff;
+    --border: #c8dcc9;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(45,122,58,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(212,160,23,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .leaf-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3Cpath d='M40 10 Q55 40 40 70 Q25 40 40 10Z' fill='%23ffffff'/%3E%3C/svg%3E");
+    background-size: 80px 80px;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 18vw, 160px);
+    color: var(--white);
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero-logo span { color: var(--gold-light); }
+  .hero-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(18px, 4vw, 30px);
+    font-weight: 700;
+    color: #a8c8ac;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-desc {
+    max-width: 600px;
+    color: #8aaa8e;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 22px auto 36px;
+    font-weight: 300;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--green-light);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--gold-light);
+    border: 2px solid var(--gold-light);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 36px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--gold-light); color: var(--dark); transform: translateY(-2px); }
+  .hero-phone {
+    margin-top: 40px;
+    animation: fadeUp 0.7s 0.5s ease both;
+  }
+  .hero-phone p { color: #607060; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .hero-phone a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .hero-phone a:hover { color: var(--gold-light); }
+
+  /* ── HOW IT WORKS ── */
+  .section { padding: 80px 24px; }
+  .section-header { text-align: center; margin-bottom: 56px; }
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 7vw, 64px);
+    color: var(--dark);
+    line-height: 1;
+    letter-spacing: 0.03em;
+  }
+  .section-title span { color: var(--green); }
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 12px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .step-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .step-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(45,122,58,0.12); }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--green-pale);
+    line-height: 1;
+    position: absolute;
+    top: 8px; right: 16px;
+  }
+  .step-icon { font-size: 2.4rem; margin-bottom: 14px; }
+  .step-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--dark); letter-spacing: 0.05em; margin-bottom: 8px; }
+  .step-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* ── MATERIALS ── */
+  .materials-section { background: var(--dark); }
+  .materials-section .section-title { color: var(--white); }
+  .materials-section .section-eyebrow { color: var(--gold-light); }
+  .materials-section .section-sub { color: #8aaa8e; }
+  .materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .mat-card {
+    background: var(--mid);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 24px 18px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .mat-card:hover { border-color: var(--green-light); transform: translateY(-3px); }
+  .mat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green-light);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+  .mat-card:hover::before { transform: scaleX(1); }
+  .mat-emoji { font-size: 2.8rem; margin-bottom: 10px; display: block; }
+  .mat-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); letter-spacing: 0.05em; margin-bottom: 6px; }
+  .mat-price {
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 3px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .mat-min { font-size: 0.78rem; color: #607060; margin-top: 4px; line-height: 1.4; }
+  .disclaimer { text-align: center; color: #607060; font-size: 0.82rem; margin-top: 28px; font-style: italic; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+  /* ── CATEGORY TABS ── */
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 1100px;
+    margin: 0 auto 40px;
+  }
+  .cat-tab {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #8aaa8e;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cat-tab:hover, .cat-tab.active {
+    background: var(--green-light);
+    border-color: var(--green-light);
+    color: #fff;
+  }
+  .cat-section { display: none; }
+  .cat-section.visible { display: block; }
+  .cat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cat-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ── WHY SYTMAL ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .why-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    border-left: 3px solid var(--green);
+    background: var(--green-pale);
+    border-radius: 0 6px 6px 0;
+  }
+  .why-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .why-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--dark); margin-bottom: 4px; }
+  .why-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.5; font-weight: 300; }
+
+  /* ── BOOK SECTION ── */
+  .book-section {
+    background: linear-gradient(135deg, var(--green) 0%, var(--dark) 100%);
+    text-align: center;
+    padding: 80px 24px;
+  }
+  .book-section .section-title { color: #fff; }
+  .book-section .section-sub { color: #a8c8ac; }
+  .phone-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 12vw, 100px);
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    margin: 20px 0;
+    text-shadow: 0 4px 20px rgba(212,160,23,0.4);
+  }
+  .phone-big a { color: inherit; text-decoration: none; }
+  .phone-note { color: #8aaa8e; font-size: 0.9rem; font-weight: 300; margin-top: 8px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 36px 24px;
+    text-align: center;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--white); letter-spacing: 0.1em; }
+  .footer-logo span { color: var(--gold-light); }
+  .footer-address { color: #607060; font-size: 0.85rem; margin-top: 8px; line-height: 1.7; }
+  .footer-copy { color: #3a4e3c; font-size: 0.75rem; margin-top: 18px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(17,26,19,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; color: var(--white); letter-spacing: 0.1em; }
+  .nav-logo span { color: var(--gold-light); }
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold-light);
+    padding: 8px 20px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding-top: 80px; }
+    .steps-grid, .why-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SYT<span>MAL</span></div>
+  <a href="tel:8017973531" class="nav-cta">📞 Book Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="leaf-bg"></div>
+  <div class="badge">♻️ Recycle • Renew • Earn</div>
+  <h1 class="hero-logo">SYT<span>MAL</span></h1>
+  <p class="hero-tagline">Save Your Time, Money &amp; Labor</p>
+  <p class="hero-desc">
+    We come to <em>you</em>. Sell your unused, damaged, or scrap materials — paper, iron, appliances, bottles, agriculture products &amp; more — and get paid on the spot. Zero hassle. Zero travel.
+  </p>
+  <div class="hero-cta">
+    <a href="#materials" class="btn-primary">View Prices</a>
+    <a href="#book" class="btn-outline">Book a Pickup</a>
+  </div>
+  <div class="hero-phone">
+    <p>Call us to schedule</p>
+    <a href="tel:8017973531">80 1797 3531</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="section-header">
+    <p class="section-eyebrow">Simple Process</p>
+    <h2 class="section-title">How It <span>Works</span></h2>
+    <p class="section-sub">Four easy steps — you collect, we collect from you.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-icon">📦</div>
+      <div class="step-title">Collect Your Materials</div>
+      <div class="step-desc">Gather your scrap, damaged goods, or recyclables. Make sure you have the minimum required quantity for your item.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-icon">📞</div>
+      <div class="step-title">Call Us to Book</div>
+      <div class="step-desc">Only the seller calls to book. Dial <strong>8017973531</strong> and schedule your pickup at a time that suits you.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-icon">🚚</div>
+      <div class="step-title">We Come to You</div>
+      <div class="step-desc">Our team arrives at your location in Kolkata and nearby areas. No transport cost on your end.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-icon">💰</div>
+      <div class="step-title">Get Paid Instantly</div>
+      <div class="step-desc">We weigh or count your materials at our listed prices and pay you on the spot. Simple, transparent, fast.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS & PRICES -->
+<section class="section materials-section" id="materials">
+  <div class="section-header">
+    <p class="section-eyebrow">Current Rates</p>
+    <h2 class="section-title">What We <span style="color:var(--gold-light)">Buy</span></h2>
+    <p class="section-sub">Tap a category to browse. Minimum quantity required per pickup booking.</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="cat-tabs">
+    <button class="cat-tab active" onclick="showCat('all',this)">All Items</button>
+    <button class="cat-tab" onclick="showCat('metal',this)">🔩 Metals</button>
+    <button class="cat-tab" onclick="showCat('elec',this)">📺 Electronics</button>
+    <button class="cat-tab" onclick="showCat('plastic',this)">🧴 Plastic &amp; Rubber</button>
+    <button class="cat-tab" onclick="showCat('paper',this)">📦 Paper &amp; Bags</button>
+    <button class="cat-tab" onclick="showCat('glass',this)">🍾 Glass</button>
+    <button class="cat-tab" onclick="showCat('agri',this)">🌾 Agriculture</button>
+    <button class="cat-tab" onclick="showCat('vehicle',this)">🚗 Vehicles</button>
+  </div>
+
+  <!-- ALL / METALS -->
+  <div id="cat-metal" class="cat-section visible" style="max-width:1100px;margin:0 auto 32px;">
+    <div class="cat-label">🔩 Metals &amp; Alloys</div>
+    <div class="materials-grid">
+      <div class="mat-card"><span class="mat-emoji">🔩</span><div class="mat-name">Iron / Steel Scrap</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 15 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🟡</span><div class="mat-name">Brass</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 5 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🟠</span><div class="mat-name">Copper</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 3 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🛢️</span><div class="mat-name">Oil Blank Tin (Empty)</div><div class="mat-price">₹10 / piece</div><div class="mat-min">Min. qty: 20 pieces</div></div>
+      <div class="mat-card"><span class="mat-emoji">🥫</span><div class="mat-name">Tin / Metal Cans</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 10 kg</div></div>
+    </div>
+  </div>
+
+  <!-- ELECTRONICS -->
+  <div id="cat-elec" class="cat-section visible" style="max-width:1100px;margin:0 auto 32px;">
+    <div class="cat-label">📺 Electronics &amp; Appliances</div>
+    <div class="materials-grid">
+      <div class="mat-card"><span class="mat-emoji">📺</span><div class="mat-name">TV (Old/Broken)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 1 unit</div></div>
+      <div class="mat-card"><span class="mat-emoji">📱</span><div class="mat-name">Mobile Phone (Damaged)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 3 units</div></div>
+      <div class="mat-card"><span class="mat-emoji">🌀</span><div class="mat-name">Fan (Ceiling/Table)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 1 unit</div></div>
+      <div class="mat-card"><span class="mat-emoji">🫙</span><div class="mat-name">Fridge / AC / Washing Machine</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 1 unit</div></div>
+      <div class="mat-card"><span class="mat-emoji">🔌</span><div class="mat-name">Other Home Appliances</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 1 unit</div></div>
+    </div>
+  </div>
+
+  <!-- PLASTIC & RUBBER -->
+  <div id="cat-plastic" class="cat-section visible" style="max-width:1100px;margin:0 auto 32px;">
+    <div class="cat-label">🧴 Plastic &amp; Rubber</div>
+    <div class="materials-grid">
+      <div class="mat-card"><span class="mat-emoji">🍾</span><div class="mat-name">Plastic Bottles (PET)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 50 bottles</div></div>
+      <div class="mat-card"><span class="mat-emoji">👟</span><div class="mat-name">Plastic / Rubber Shoes</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 10 pairs</div></div>
+      <div class="mat-card"><span class="mat-emoji">🚗</span><div class="mat-name">Tyres (Vehicle)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 4 tyres</div></div>
+      <div class="mat-card"><span class="mat-emoji">🟤</span><div class="mat-name">Rubber Scrap</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 10 kg</div></div>
+    </div>
+  </div>
+
+  <!-- PAPER & BAGS -->
+  <div id="cat-paper" class="cat-section visible" style="max-width:1100px;margin:0 auto 32px;">
+    <div class="cat-label">📦 Paper, Board &amp; Bags</div>
+    <div class="materials-grid">
+      <div class="mat-card"><span class="mat-emoji">📦</span><div class="mat-name">Paper Board / Cardboard</div><div class="mat-price">₹18 / kg</div><div class="mat-min">Min. qty: 10 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">📰</span><div class="mat-name">Newspaper / Paper Waste</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 5 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🥚</span><div class="mat-name">Egg Tray (Paper)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 100 trays</div></div>
+      <div class="mat-card"><span class="mat-emoji">🧅</span><div class="mat-name">Onion &amp; Potato Bags</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 50 bags</div></div>
+      <div class="mat-card"><span class="mat-emoji">🪡</span><div class="mat-name">Nylon Bags</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 5 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🌿</span><div class="mat-name">Jute Bags</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 20 bags</div></div>
+    </div>
+  </div>
+
+  <!-- GLASS -->
+  <div id="cat-glass" class="cat-section visible" style="max-width:1100px;margin:0 auto 32px;">
+    <div class="cat-label">🍾 Glass</div>
+    <div class="materials-grid">
+      <div class="mat-card"><span class="mat-emoji">🍶</span><div class="mat-name">Glass Bottles</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 30 bottles</div></div>
+      <div class="mat-card"><span class="mat-emoji">🪟</span><div class="mat-name">Glass Scrap / Broken Glass</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 10 kg</div></div>
+    </div>
+  </div>
+
+  <!-- VEHICLES -->
+  <div id="cat-vehicle" class="cat-section visible" style="max-width:1100px;margin:0 auto 32px;">
+    <div class="cat-label">🚗 Vehicles &amp; Parts</div>
+    <div class="materials-grid">
+      <div class="mat-card"><span class="mat-emoji">🚲</span><div class="mat-name">Cycle / Bicycle (Old)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 1 unit</div></div>
+      <div class="mat-card"><span class="mat-emoji">🏍️</span><div class="mat-name">Motorcycle / Scooter (Scrap)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 1 unit</div></div>
+      <div class="mat-card"><span class="mat-emoji">🚗</span><div class="mat-name">Car (Scrap / Damaged)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 1 unit</div></div>
+      <div class="mat-card"><span class="mat-emoji">⚙️</span><div class="mat-name">Vehicle Parts / Engine</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: Varies</div></div>
+    </div>
+  </div>
+
+  <!-- AGRICULTURE -->
+  <div id="cat-agri" class="cat-section visible" style="max-width:1100px;margin:0 auto 32px;">
+    <div class="cat-label">🌾 Agriculture Products</div>
+    <div class="materials-grid">
+      <div class="mat-card"><span class="mat-emoji">🥥</span><div class="mat-name">Coconut (Dried/Husk)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 30 coconuts</div></div>
+      <div class="mat-card"><span class="mat-emoji">🌾</span><div class="mat-name">Rice (Surplus / Damaged)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 25 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🌿</span><div class="mat-name">Wheat (Surplus / Damaged)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 25 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🧅</span><div class="mat-name">Onion (Damaged / Surplus)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 20 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🥔</span><div class="mat-name">Potato (Damaged / Surplus)</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: 20 kg</div></div>
+      <div class="mat-card"><span class="mat-emoji">🌱</span><div class="mat-name">Other Agriculture Products</div><div class="mat-price">Call for Rate</div><div class="mat-min">Min. qty: Varies</div></div>
+    </div>
+  </div>
+
+  <p class="disclaimer">* Prices are indicative and subject to material condition. Final rate confirmed at pickup. "Call for Rate" items assessed on arrival — call <strong style="color:#a8c8ac">8017973531</strong> for a quick quote.</p>
+</section>
+
+<script>
+function showCat(cat, btn) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const sections = ['metal','elec','plastic','paper','glass','vehicle','agri'];
+  sections.forEach(id => {
+    const el = document.getElementById('cat-' + id);
+    if (cat === 'all' || cat === id) {
+      el.classList.add('visible');
+    } else {
+      el.classList.remove('visible');
+    }
+  });
+}
+</script>
+
+<!-- WHY SYTMAL -->
+<section class="section" id="why">
+  <div class="section-header">
+    <p class="section-eyebrow">Our Promise</p>
+    <h2 class="section-title">Why Choose <span>SYTMAL</span></h2>
+    <p class="section-sub">We built this for sellers — everything we do saves you time, money, and effort.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon">⏱️</div>
+      <div>
+        <div class="why-title">Save Time</div>
+        <div class="why-desc">No need to travel to a scrap dealer. We come to your door on your schedule.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">💸</div>
+      <div>
+        <div class="why-title">Save Money</div>
+        <div class="why-desc">No transport cost, no middlemen. You receive our full listed price directly.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">💪</div>
+      <div>
+        <div class="why-title">Save Labor</div>
+        <div class="why-desc">Our team handles loading. No heavy lifting or sorting required from you.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">♻️</div>
+      <div>
+        <div class="why-title">Eco-Friendly</div>
+        <div class="why-desc">Every item we collect is recycled or renewed — keeping waste out of landfills.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🤝</div>
+      <div>
+        <div class="why-title">Transparent Pricing</div>
+        <div class="why-desc">Fixed listed rates. No haggling. No surprises. You know what you'll earn before we arrive.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">📍</div>
+      <div>
+        <div class="why-title">Local & Trusted</div>
+        <div class="why-desc">Based in Kolkata, Sherpur. Serving our local community with honesty and care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK NOW -->
+<section class="book-section" id="book">
+  <p class="section-eyebrow" style="color:var(--gold-light)">Ready to Sell?</p>
+  <h2 class="section-title" style="color:#fff; font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,7vw,64px);">Book Your Pickup</h2>
+  <p class="section-sub" style="color:#a8c8ac; max-width:500px; margin:14px auto 0;">
+    Simply call us to schedule. Only the seller makes the booking call — we'll confirm your slot and come to you.
+  </p>
+  <div class="phone-big"><a href="tel:8017973531">80 1797 3531</a></div>
+  <p class="phone-note">Contract No: <strong style="color:#c8e0ca">8017973531</strong> &nbsp;|&nbsp; Available Mon–Sat, 9am–7pm</p>
+  <p class="phone-note" style="margin-top:8px;">📍 Office: Sherpur, Kolkata – 743513</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SYT<span>MAL</span></div>
+  <p class="footer-address">
+    Save Your Time, Money &amp; Labor<br>
+    Sherpur, Kolkata – 743513, West Bengal, India<br>
+    📞 <a href="tel:8017973531" style="color:#607060; text-decoration:none;">8017973531</a>
+  </p>
+  <p class="footer-copy">© 2024 SYTMAL. All rights reserved. Recycling &amp; Renewal Services.</p>
+</footer>
+
+</body>
+</html>
